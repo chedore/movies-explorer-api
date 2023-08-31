@@ -1,4 +1,3 @@
-// https://docs.python.org/3/library/http.html
 const OK = 200;
 const CREATED = 201;
 // eslint-disable-next-line max-len
