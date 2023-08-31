@@ -1,11 +1,11 @@
 require('dotenv').config();
 const process = require('process');
 
-const { PORT = 3000, DB = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const { DB, PORT } = require('./utils/constant');
 const router = require('./routes/index');
 
 const limiter = require('./middlewares/rate_limiter');
