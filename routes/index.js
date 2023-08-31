@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const NotFoundError = require('../errors/NotFoundError');
 const userRouters = require('./users');
+const movieRouters = require('./movies');
 const { createUser, login } = require('../controllers/users');
 const { validateCreateUser, validateLogin } = require('../middlewares/validation');
 const auth = require('../middlewares/auth');
@@ -16,6 +17,7 @@ router.post('/signin', validateLogin, login);
 router.use(auth);
 
 router.use('/users', userRouters);
+router.use('/movies', movieRouters);
 
 router.use('*', (req, res, next) => {
   next(new NotFoundError('Неверно введена ссылка'));
