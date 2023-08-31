@@ -15,6 +15,8 @@
 
 ## Docs_route
 
+### Реализация аутентификации и авторизации
+
 <details>
 <summary>POST /signup</summary>
 создаёт пользователя с переданными в теле email, password и name
@@ -33,7 +35,7 @@
 }
 ```
 
-Успешный ответ `200`:
+Успешный ответ `201`:
 ```bash 
 {
     "_id": "64ef48da3c23e5c43423185d",
@@ -68,7 +70,7 @@
 }
 ```
 
-Успешный ответ `201`:
+Успешный ответ `200`:
 ```bash 
 {
     "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjUxNDhlNWJiODhmZGNhOTIxYjZhYzciLCJpYXQiOjE1OTkyMTExNzN9.Q3DVLh7t0f0BjyG9gh3UlUREYQxl2chdGTGy701lF6I"
@@ -80,4 +82,68 @@
 400 - Некорректно заполнено одно из полей 
 401 - пользователь с email не найден 
 ```
+</details>
+
+###  Закрытые роуты 
+
+<details>
+<summary>GET /users/me</summary>
+возвращает информацию о пользователе (email и имя)
+
+Заголовки:
+```bash 
+{
+    "Content-Type": "application/json",
+    "Authorization" : `Bearer ${ВАШ JWT}`
+} 
+```
+
+Успешный ответ `200`:
+```bash 
+{
+    "_id": "64ef48da3c23e5c43423185d",
+    "name": "test",
+    "email": "em4@em3.ru"
+} 
+```
+
+Коды ошибок:
+```bash 
+401 — Переданный токен некорректен 
+```
+</details>
+
+<details>
+<summary>PATCH /users/me</summary>
+обновляет информацию о пользователе (email и имя)
+
+Заголовки:
+```bash 
+{
+    "Content-Type": "application/json",
+    "Authorization" : `Bearer ${ВАШ JWT}`
+} 
+```
+
+Тело запроса:
+```bash 
+{
+    "name": "test3333",
+    "email": "em4@em3.ru"
+}
+```
+
+Успешный ответ `200`:
+```bash 
+{
+    "_id": "64ef48da3c23e5c43423185d",
+    "name": "test3333",
+    "email": "em4@em3.ru"
+}
+```
+Коды ошибок:
+```bash 
+400 - Некорректно заполнено одно из полей 
+```
+
 </details>
