@@ -10,20 +10,33 @@ const router = require('./routes/index');
 
 const limiter = require('./middlewares/rate_limiter');
 const errorHandler = require('./middlewares/error-handler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/cors');
 
 const app = express();
 app.use(express.json());
+app.use(requestLogger);
 app.use(helmet());
+
+app.use(cors);
 
 // число запросов с одного IP в единицу времени ограничено
 app.use(limiter);
 
 mongoose.connect(DB, {});
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадет');
+  }, 0);
+});
+
 app.use('/', router);
 
 // обработчик ошибок celebrate
-router.use(errors());
+app.use(errors());
+
+app.use(errorLogger);
 
 // централизованный обработчик ошиибок
 app.use(errorHandler);
