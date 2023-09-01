@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { celebrate, Joi } = require('celebrate');
 
 // eslint-disable-next-line no-useless-escape
@@ -6,7 +5,8 @@ const regex = /^(http|https):\/\/(?:www\.)?[a-zA-Z0-9._~\-:?#[\]@!$&'()*+,\/;=]{
 
 const validateCreateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).optional(),
+    name: Joi.string().min(2).max(30).optional()
+      .required(),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
@@ -21,7 +21,8 @@ const validateLogin = celebrate({
 
 const validateUserProfile = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).optional(),
+    name: Joi.string().min(2).max(30).required()
+      .optional(),
     email: Joi.string().required().email(),
   }),
 });
