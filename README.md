@@ -13,6 +13,14 @@
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
 
+## Ссылки на проект
+
+IP 158.160.63.203
+
+Frontend -
+
+Backend https://api.sprozhir.nomoredomainsicu.ru/
+
 ## Docs_route
 
 ### Реализация аутентификации и авторизации
