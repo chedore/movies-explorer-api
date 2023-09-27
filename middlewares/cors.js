@@ -3,6 +3,12 @@ const allowedCors = [
   'http://localhost:3001',
   'http://127.0.0.1:3000',
   'http://127.0.0.1:3001',
+  'https://sprozhir.nomoredomainsrocks.ru',
+  'http://sprozhir.nomoredomainsrocks.ru',
+  'https://api.sprozhir.nomoredomainsicu.ru',
+  'http://api.sprozhir.nomoredomainsicu.ru',
+  'http://158.160.120.114:80',
+  'https://127.0.0.1:443',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
